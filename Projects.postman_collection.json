@@ -1,0 +1,335 @@
+{
+  "info": {
+    "_postman_id": "809c7568-c134-4a6d-a282-6164649fead2",
+    "name": "Projects",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "25599780"
+  },
+  "item": [
+    {
+      "name": "Crear",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var response = pm.response.json();\r",
+              "pm.collectionVariables.set(\"PROJECT_ID\",response.Id);\r",
+              "\r",
+              "//Verificaciones\r",
+              "pm.test(\"Verify status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify Project Name\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.Content).to.eql(\"Proyecto Postman\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify Project Icon\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.Icon).to.eql(5);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "autoapi2026",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "junio2026@autoapi.com",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"Content\": \"Proyecto Postman\",\r\n    \"Icon\": 5\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://todo.ly/api/projects.json",
+          "protocol": "https",
+          "host": [
+            "todo",
+            "ly"
+          ],
+          "path": [
+            "api",
+            "projects.json"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Actualizar",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//Verificaciones\r",
+              "pm.test(\"Verify status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify Project Name\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.Content).to.eql(\"Proyecto Postman Actualizado\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify Project Icon\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.Icon).to.eql(2);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "autoapi2026",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "junio2026@autoapi.com",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"Content\": \"Proyecto Postman Actualizado\",\r\n    \"Icon\": 2\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://todo.ly/api/projects/{{PROJECT_ID}}.json",
+          "protocol": "https",
+          "host": [
+            "todo",
+            "ly"
+          ],
+          "path": [
+            "api",
+            "projects",
+            "{{PROJECT_ID}}.json"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Buscar",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//Verificaciones\r",
+              "pm.test(\"Verify status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify Project Name\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.Content).to.eql(\"Proyecto Postman Actualizado\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify Project Icon\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.Icon).to.eql(2);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "autoapi2026",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "junio2026@autoapi.com",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://todo.ly/api/projects/{{PROJECT_ID}}.json",
+          "protocol": "https",
+          "host": [
+            "todo",
+            "ly"
+          ],
+          "path": [
+            "api",
+            "projects",
+            "{{PROJECT_ID}}.json"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Eliminar",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//Verificaciones\r",
+              "pm.test(\"Verify status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify Project Name\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.Content).to.eql(\"Proyecto Postman Actualizado\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify Project Icon\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.Icon).to.eql(2);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Verify Deleted Project\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.Deleted).to.eql(true);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "autoapi2026",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "junio2026@autoapi.com",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://todo.ly/api/projects/{{PROJECT_ID}}.json",
+          "protocol": "https",
+          "host": [
+            "todo",
+            "ly"
+          ],
+          "path": [
+            "api",
+            "projects",
+            "{{PROJECT_ID}}.json"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "PROJECT_ID",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}
